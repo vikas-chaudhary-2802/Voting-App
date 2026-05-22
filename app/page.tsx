@@ -28,28 +28,32 @@ export default function VotingPage() {
     setSubmitting(teamId);
     setMessage("");
 
-    const response = await fetch(`/api/events/${eventId}/vote`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ teamId, voterKey: getVoterKey() })
-    });
+    try {
+      const response = await fetch(`/api/events/${eventId}/vote`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ teamId, voterKey: getVoterKey() })
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (response.ok) {
-      lockVote(eventId, teamId);
-      setLockedTeam(teamId);
-      setSelectedTeam(null);
-      setMessage("Your vote has been successfully submitted.");
-      await refresh();
-    } else {
-      setMessage(data.message || "Unable to submit vote.");
-      if (response.status === 409) {
+      if (response.ok) {
+        lockVote(eventId, teamId);
         setLockedTeam(teamId);
+        setSelectedTeam(null);
+        setMessage("Your vote has been successfully submitted.");
+        await refresh();
+      } else {
+        setMessage(data.message || "Unable to submit vote.");
+        if (response.status === 409) {
+          setLockedTeam(teamId);
+        }
       }
+    } catch (caught) {
+      setMessage("A network error occurred. Please try again.");
+    } finally {
+      setSubmitting("");
     }
-
-    setSubmitting("");
   }
 
   return (

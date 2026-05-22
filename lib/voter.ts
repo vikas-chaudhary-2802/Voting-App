@@ -10,7 +10,9 @@ export function getVoterKey() {
     return existing;
   }
 
-  const voterKey = crypto.randomUUID();
+  const voterKey = typeof crypto !== "undefined" && crypto.randomUUID
+    ? crypto.randomUUID()
+    : Math.random().toString(36).substring(2) + Date.now().toString(36);
   window.localStorage.setItem(storageKey, voterKey);
   return voterKey;
 }
