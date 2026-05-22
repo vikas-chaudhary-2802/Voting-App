@@ -3,7 +3,8 @@ import path from "path";
 import crypto from "crypto";
 import { AppData, EventSnapshot, Team, Vote } from "@/lib/types";
 
-const dataDir = path.join(process.cwd(), "data");
+const isVercel = process.env.VERCEL === "1" || !!process.env.VERCEL_URL;
+const dataDir = isVercel ? "/tmp/data" : path.join(process.cwd(), "data");
 const dataFile = path.join(dataDir, "votes.json");
 
 const defaultData: AppData = {
