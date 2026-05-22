@@ -1,0 +1,49 @@
+{
+  "events": [
+    {
+      "id": "startup-sprint-2026",
+      "name": "Inspire India Founder Circle",
+      "tagline": "Vote for the founder building the next big idea.",
+      "date": "2026-05-22T18:00:00+05:30",
+      "status": "open"
+    }
+  ],
+  "teams": [
+    {
+      "id": "1bca61b9-9a7d-466f-9381-109416b5f7af",
+      "eventId": "startup-sprint-2026",
+      "teamName": "X",
+      "startupName": "A",
+      "description": "I am Startup",
+      "members": [],
+      "color": "#1267ff"
+    },
+    {
+      "id": "29cd33a4-3169-4aaa-9ddd-05f471ea1039",
+      "eventId": "startup-sprint-2026",
+      "teamName": "Y",
+      "startupName": "B",
+      "description": "I am Startup",
+      "members": [],
+      "color": "#1267ff"
+    },
+    {
+      "id": "9d114b78-c391-4b1e-ab06-8e2f0666d694",
+      "eventId": "startup-sprint-2026",
+      "teamName": "Z",
+      "startupName": "C",
+      "description": "I am Startup",
+      "members": [],
+      "color": "#1267ff"
+    }
+  ],
+  "votes": [
+    {
+      "id": "df3fcbcd-fb6e-4efb-ac7e-e2764e9c65c6",
+      "eventId": "startup-sprint-2026",
+      "teamId": "1bca61b9-9a7d-466f-9381-109416b5f7af",
+      "voterKey": "c7d8111e-0e72-4567-9c0b-c153bc2f9fb4",
+      "createdAt": "2026-05-22T15:09:55.438Z"
+    }
+  ]
+}
