@@ -1,5 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
+import crypto from "crypto";
 import { AppData, EventSnapshot, Team, Vote } from "@/lib/types";
 
 const dataDir = path.join(process.cwd(), "data");
