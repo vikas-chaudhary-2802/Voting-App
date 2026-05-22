@@ -3,7 +3,8 @@
 import { SiteShell } from "@/components/site-shell";
 import { useEventSnapshot } from "@/components/use-event-snapshot";
 import { TeamWithVotes } from "@/lib/types";
-import { Check, Copy, Plus, Power, RefreshCcw, Trash2 } from "lucide-react";
+import { Check, Copy, LogOut, Plus, Power, RefreshCcw, Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 
 const eventId = "startup-sprint-2026";
@@ -23,6 +24,7 @@ export default function AdminPage() {
   const [actionError, setActionError] = useState("");
   const [actionMessage, setActionMessage] = useState("");
   const [votingLink, setVotingLink] = useState("/");
+  const router = useRouter();
 
   useEffect(() => {
     setVotingLink(`${window.location.origin}/`);
@@ -144,12 +146,27 @@ export default function AdminPage() {
     }
   }
 
+  async function handleLogout() {
+    await fetch("/api/auth/logout", { method: "POST" });
+    router.push("/admin/login");
+    router.refresh();
+  }
+
   return (
     <SiteShell>
       <section className="mx-auto grid max-w-6xl gap-6 py-10 lg:grid-cols-[0.95fr_1.05fr] lg:py-16">
         <div>
-          <div className="mb-3 w-fit rounded-full border border-orange-200 bg-orange-50 px-3 py-1 text-sm font-medium text-orange-700">
-            Admin dashboard
+          <div className="mb-3 flex items-center justify-between">
+            <div className="w-fit rounded-full border border-orange-200 bg-orange-50 px-3 py-1 text-sm font-medium text-orange-700">
+              Admin dashboard
+            </div>
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition"
+            >
+              <LogOut size={16} />
+              Log Out
+            </button>
           </div>
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">Run Founder Circle voting.</h1>
           <p className="mt-4 max-w-xl text-lg leading-8 text-slate-600">
